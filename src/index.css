@@ -1,0 +1,371 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Shablon POS - rang tizimi va asosiy uslublar (Tailwind v4, CSS-first)
+   Dizayn: to'q fon + yashil (emerald) aksent, katta teginish maydonlari
+   --------------------------------------------------------------------------- */
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    sans-serif;
+
+  /* Brend ranglari */
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+
+  /* Sirt (surface) ranglari - to'q mavzu */
+  --color-surface-900: #0b1220;
+  --color-surface-850: #0f172a;
+  --color-surface-800: #16203a;
+  --color-surface-700: #1e293b;
+  --color-surface-600: #334155;
+
+  --radius-4xl: 2rem;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    color: #e2e8f0;
+    font-family: var(--font-sans);
+    overscroll-behavior-y: none;
+    background:
+      radial-gradient(1100px 520px at 88% -12%, rgba(16, 185, 129, 0.09), transparent 62%),
+      radial-gradient(900px 480px at -12% 108%, rgba(56, 130, 246, 0.07), transparent 60%),
+      var(--color-surface-900);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(16, 185, 129, 0.35);
+    color: #fff;
+  }
+
+  /* Raqamli maydonlarda spinnerlarni yashirish (kassa uchun qulay) */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
+  }
+}
+
+@layer utilities {
+  /* iPhone "notch" va pastdagi chiziq uchun xavfsiz chegaralar */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
+  .h-screen-safe {
+    height: 100dvh;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .animate-in {
+    animation: pos-fade-in 0.18s ease-out both;
+  }
+  .animate-backdrop {
+    animation: pos-backdrop-in 0.2s ease-out both;
+  }
+  .animate-toast-in {
+    animation: pos-toast-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-drawer-in {
+    animation: pos-drawer-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-sheet {
+    animation: pos-sheet-up 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* ------- Boy animatsiya utilitlari ------- */
+  .animate-flash-ok {
+    animation: pos-flash-ok 0.6s ease-out both;
+  }
+  .animate-flash-warn {
+    animation: pos-flash-warn 0.65s ease-out both;
+  }
+  .animate-shake {
+    animation: pos-shake 0.45s ease-in-out both;
+  }
+  .animate-pop-in {
+    animation: pos-pop-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-bump {
+    animation: pos-bump 0.3s ease-out both;
+  }
+  .animate-breathe {
+    animation: pos-breathe 2.4s ease-in-out infinite;
+  }
+  .animate-glow-pulse {
+    animation: pos-glow-pulse 2.2s ease-in-out infinite;
+  }
+  .animate-rise {
+    animation: pos-rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes pos-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pos-sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pos-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pos-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pos-drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pos-scan-line {
+  0% {
+    top: 6%;
+  }
+  100% {
+    top: 94%;
+  }
+}
+
+.scan-line {
+  animation: pos-scan-line 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes pos-flash-ok {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pos-flash-warn {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pos-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes pos-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pos-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pos-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes pos-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes pos-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* html5-qrcode kutubxonasi to'lov oynasi ochilganda "Scanner paused" matnini
+   ko'rsatadi - uni yashiramiz (biz o'zimizning ko'rinishni chizamiz) */
+.pos-scanner > div[style*='rgba(9, 9, 9, 0.46)'] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   CHEKNI CHOP ETISH (58mm / 80mm termo printer uslubi)
+   Chop etishda faqat .receipt-print ko'rinadi.
+   --------------------------------------------------------------------------- */
+@media print {
+  @page {
+    margin: 0;
+    size: 80mm auto;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .receipt-print,
+  .receipt-print * {
+    visibility: visible !important;
+  }
+
+  .receipt-print {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 72mm !important;
+    margin: 0 !important;
+    padding: 2mm 2mm !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-family: 'Courier New', ui-monospace, monospace !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
