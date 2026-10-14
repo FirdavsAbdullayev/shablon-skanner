@@ -289,8 +289,8 @@ export function Scanner({
       fps: 10,
       // Shtrix kod uzun va yupqa bo'ladi -> keng to'rtburchak maydon
       qrbox: (viewfinderWidth: number, viewfinderHeight: number) => ({
-        width: Math.floor(viewfinderWidth * 0.9),
-        height: Math.floor(viewfinderHeight * 0.52),
+        width: Math.floor(viewfinderWidth * 0.88),
+        height: Math.floor(viewfinderHeight * 0.42),
       }),
       aspectRatio: 1.7778,
       disableFlip: false,
@@ -450,12 +450,12 @@ export function Scanner({
       {status === 'running' ? (
         <div className="pointer-events-none absolute inset-0">
           {/* Chiziq qoraytirish ramkasi + chayqalish */}
-          <div className={`absolute inset-x-[5%] inset-y-[24%] ${flash?.kind === 'warn' ? 'animate-shake' : ''}`}>
+          <div className={`absolute inset-x-[6%] inset-y-[29%] ${flash?.kind === 'warn' ? 'animate-shake' : ''}`}>
             <div className="animate-breathe absolute inset-0 rounded-xl border-2 border-brand-400/70">
-              <span className="absolute -left-px -top-px size-7 rounded-tl-xl border-l-4 border-t-4 border-brand-400" />
-              <span className="absolute -right-px -top-px size-7 rounded-tr-xl border-r-4 border-t-4 border-brand-400" />
-              <span className="absolute -bottom-px -left-px size-7 rounded-bl-xl border-b-4 border-l-4 border-brand-400" />
-              <span className="absolute -bottom-px -right-px size-7 rounded-br-xl border-b-4 border-r-4 border-brand-400" />
+              <span className="absolute -left-px -top-px size-6 rounded-tl-xl border-l-4 border-t-4 border-brand-400" />
+              <span className="absolute -right-px -top-px size-6 rounded-tr-xl border-r-4 border-t-4 border-brand-400" />
+              <span className="absolute -bottom-px -left-px size-6 rounded-bl-xl border-b-4 border-l-4 border-brand-400" />
+              <span className="absolute -bottom-px -right-px size-6 rounded-br-xl border-b-4 border-r-4 border-brand-400" />
               <span className="scan-line absolute inset-x-3 h-0.5 rounded-full bg-brand-400/90 shadow-[0_0_12px_2px_rgba(16,185,129,0.7)]" />
             </div>
           </div>
