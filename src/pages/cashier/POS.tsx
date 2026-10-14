@@ -329,7 +329,7 @@ export function POS() {
             warnSignal={warnSignal}
             enabled={cameraOn}
             onToggle={() => setCameraOn((v) => !v)}
-            className="h-40 sm:h-52 md:h-56 lg:h-64"
+            className="h-[42vh] min-h-[210px] max-h-[440px] md:h-64 lg:h-72"
           />
 
           <ProductSearch
